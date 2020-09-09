@@ -19,7 +19,7 @@ _Megjegyzés: Ez eltarthat 5-10 percig_
 7. Telepítsük fel a composer csomagokat a `composer install` paranccsal.
 8. Telepítsük fel az npm csomagokat az `npm install` paranccsal.
 9. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
-10. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.
+10. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
 _Fontos: Ha ezen parancs futása során hibát kapunk akkor elképzelhető, hogy manuálisan kell létrehoznunk az adatbázist. Bővebben erről lent._
 
 ## Telepítés (Docker nélkül)
@@ -29,8 +29,34 @@ _Fontos: Ha ezen parancs futása során hibát kapunk akkor elképzelhető, hogy
 3. Telepítsük fel a composer csomagokat a `composer install` paranccsal.
 4. Telepítsük fel az npm csomagokat az `npm install` paranccsal.
 5. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
-6. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.
+6. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
 _Fontos: Ha ezen parancs futása során hibát kapunk, nézzük meg, hogy nem e írtunk el valamit a `.env` fájl DB-vel kezdődő változóiban_
+7. Futtassuk le a következő parancsot a beépített dev server elindításához: `php artisan serve`
+8. Az applikáció a `http://localhost:8000` címen fog futni.
+
+## Telepítési parancsok listája
+
+### Docker
+```
+cp env-example .env
+cp .env.example .env
+docker-compose up -d --build workspace nginx mysql
+docker-compose exec workspace bash
+composer install
+npm install
+php artisan key:generate
+php artisan migrate
+```
+
+### Docker nélkül
+```
+cp .env.example .env
+composer install
+npm install
+php artisan migrate
+php artisan key:generate
+php artisan serve
+```
 
 ### php artisan migrate error segítség
 * Mindenekelőtt győződjünk meg arról, hogy fut a mysql konténer a `docker ps paranccsal`.
@@ -42,7 +68,7 @@ _Fontos: Ha ezen parancs futása során hibát kapunk, nézzük meg, hogy nem e 
     4. Hozzuk létre a `.env` fájlban megadott adatbázist a `CREATE DATABASE adatbázisnév;` paranccsal.
     5. A 3. pontban szereplő utasítással győződjünk meg róla, hogy most tényleg létrehozta az adatbázist.
 * Ha nem tud az adatbázisba bejelentezni
-    0. Győződjünk meg arról, hogy a laraveles `.env` fájlban található DB_USERNAME és DB_PASSWORD változó megegyezik a laradock `.env` fájljában található MYSQL_USER és MYSQL_PASSWORD változó értékével. Ha rootként szeretnénk bejelentkezni akkor DB_USERNAME=root és a DB_PASSWORD= a laradockos MYSQL_ROOT_PASSWORD értékével.
+    0. Győződjünk meg arról, hogy a laraveles `.env` fájlban található `DB_USERNAME` és `DB_PASSWORD` változó megegyezik a laradock `.env` fájljában található `MYSQL_USER` és `MYSQL_PASSWORD` változó értékével. Ha rootként szeretnénk bejelentkezni akkor `DB_USERNAME`=root és a `DB_PASSWORD`= a laradockos `MYSQL_ROOT_PASSWORD` értékével.
     1. Basheljünk a mysql konténerbe a `docker-compose exec mysql bash` paranccsal.
     2. Próbáljunk meg bejelentkezni a `mysql -u felhasznalonev -p` paranccsal a `.env` fájlban szereplő adatok alapján.
         * Ha így működik akkor futtassuk le a workspace konténerben a `php artisan config:clear` parancsot.
