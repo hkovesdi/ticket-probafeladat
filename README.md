@@ -13,7 +13,7 @@
    DB_USERNAME= ugyanaz mint laradock .env-ben szereplő MYSQL_USER változó (vagy root, ha azzal szerepnénk belépni)
    DB_PASSWORD= ugyanaz mint laradock .env-ben szereplő MYSQL_PASSWORD, vagy ha root-tal léptünk be MYSQL_ROOT_PASSWORD változó
    ```
-5. Navigáljunk a laradock mappába és indítsuk el a konténereket a `docker-compose up -d --build workspace nginx mysql` paranccsal.
+5. Navigáljunk a laradock mappába és indítsuk el a konténereket a `docker-compose up -d --build workspace nginx mysql` paranccsal.  
 _Megjegyzés: Ez eltarthat 5-10 percig_
 6. Basheljünk bele a workspace konténerbe a `docker-compose exec workspace bash` paranccsal.
 7. Telepítsük fel a composer csomagokat a `composer install` paranccsal.
