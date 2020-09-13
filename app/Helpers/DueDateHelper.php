@@ -2,92 +2,96 @@
 
 namespace App\Helpers;
 
+use Carbon\CarbonInterface;
+use DateInterval;
 use Illuminate\Support\Carbon;
 
 class DueDateHelper 
 {
     private $submitDate;
-    private $maxResponseTimeWorkHours;
-    private $workdayStartHour;
-    private $workdayEndHour;
+    private $dueDate;
+    private $workTimes;
+    private $exceptions;
+    private $maxResponseTime;
 
-    function __construct(Carbon $submitDate = NULL, int $maxResponseTimeWorkHours = 16, $workdayStartHour = 9, $workdayEndHour = 17) 
+    function __construct(string $maxResponseTime, array $workTimes, CarbonInterface $submitDate = NULL, array $exceptions = array()) 
     {
         $this->submitDate = $submitDate ?? Carbon::now();
-        $this->maxResponseTimeWorkHours = $maxResponseTimeWorkHours;
-        $this->workdayStartHour = $workdayStartHour;
-        $this->workdayEndHour = $workdayEndHour;
+        $this->maxResponseTime = $maxResponseTime;
+        $this->workTimes = $this->parseWorkTimes($workTimes);
+        $this->exceptions = $exceptions;
+    }
+
+    private function parseWorkTimes(array $workTimes) 
+    {
+        $parsedWorkTimes = array();
+        foreach($workTimes as $workTime) {
+            if($workTime === null) {
+                array_push($parsedWorkTimes, null);
+            } else {
+                $workTime = explode('-', $workTime);
+                $workTimeStartSplit = explode(':', $workTime[0]);
+                $workTimeStart = new DateInterval("PT{$workTimeStartSplit[0]}H{$workTimeStartSplit[1]}M{$workTimeStartSplit[2]}S");
+                $workTimeEndSplit = explode(':', $workTime[1]);
+                $workTimeEnd = new DateInterval("PT{$workTimeEndSplit[0]}H{$workTimeEndSplit[1]}M{$workTimeEndSplit[2]}S");
+                array_push($parsedWorkTimes, array("start" => $workTimeStart, "end" => $workTimeEnd));
+            }
+        }
+        return $parsedWorkTimes;
     }
 
     public function calculateDueDate() 
     {
-        $currentWorkingHour = $this->isWorkingHour($this->submitDate) ? $this->submitDate : $this->getNextWorkingHour($this->submitDate);
-        $minutesToAdd = $currentWorkingHour->minute;
+        $remainingSeconds = strtotime($this->maxResponseTime) - strtotime('TODAY');
+        $currentTime = $this->isWorkday($this->submitDate) ? $this->submitDate : $this->getNextWorkDay($this->submitDate);
+        $currentWorkday = $this->createWorkday($currentTime);
+        $workTimeRemaining = $currentWorkday->getRemainingWorkTimeInSeconds();
 
-        for($i = 0; $i < $this->maxResponseTimeWorkHours; $i++) {
-            $currentWorkingHour = $this->getNextWorkingHour($currentWorkingHour);
-        }
-        
-        if($currentWorkingHour->hour == $this->workdayEndHour) {
-            $currentWorkingHour = $this->getNextWorkingHour($currentWorkingHour)->addMinutes($minutesToAdd);
-        }
-        else {
-            $currentWorkingHour = $currentWorkingHour->addMinutes($minutesToAdd);
+        while($remainingSeconds <= $workTimeRemaining) {
+            $remainingSeconds -= $workTimeRemaining;
+            $currentTime = $this->getNextWorkDay($currentTime);
+            $currentWorkday = $this->createWorkday($currentTime);
         }
 
-        return $currentWorkingHour;
+        return $currentTime->addSeconds($remainingSeconds);
     }
 
     /**
      * Gets the next workday
-     * @param Carbon $date
-     * @return Carbon $nextDay
+     * @param CarbonInterface $date
+     * @return CarbonInterface $nextDay
      */
-    private function getNextWorkDay(Carbon $date) 
+    private function getNextWorkDay(CarbonInterface $date) 
     {   
-        $nextDay = $date->copy()->addDay()->hours($this->workdayStartHour)->minutes(0);
+        $nextDay = $date->copy()->addDay();
         
         while(!$this->isWorkday($nextDay)) {
-            $nextDay->addDay()->hours($this->workdayStartHour)->minutes(0);
+            $nextDay->addDay();
         }
 
-        return $nextDay;
-    }
-
-    private function getNextWorkingHour(Carbon $date) 
-    {   
-        //If the date is not a workday, or it is the last hour of the workday, the next working hour will be at the start of the next workday.
-        if(!$this->isWorkday($date) || $date->hour > $this->workdayEndHour - 2) {
-            return $this->getNextWorkDay($date);
-        }
-        //If the date is a workday, but it's earlier that working hours, the nex working hour will be at the start.
-        else if($date->hour < $this->workdayStartHour) {
-            return $date->hours($this->workdayStartHour)->minutes(0);
-        }
-        else {
-            return $date->addHour();
-        }
+        $workdayStart = $this->workTimes[$nextDay->dayOfWeekIso-1]['start'];
+        
+        return $nextDay->startOfDay()->add($workdayStart);
     }
 
     /**
      * Determines if the given date is a workday
-     * @param Carbon $date
+     * @param CarbonInterface $date
      * @return bool
      */
-    private function isWorkday(Carbon $date) 
+    private function isWorkday(CarbonInterface $date) 
     {
-        return $date->isWeekday();
+        return $this->workTimes[$date->dayOfWeekIso-1] !== null;
     }
 
     /**
-     * Determines whether the current date is a work hour
-     * @param Carbon $date
-     * @return bool
+     * Creates a new workday based on the date
+     * @param CarbonInterface $date
+     * @return Workday
      */
-    private function isWorkingHour(Carbon $date) 
-    {
-        return $this->isWorkDay($date) && 
-            $date->hour >= $this->workdayStartHour && 
-            $date->hour < $this->workdayEndHour;
+    private function createWorkday(CarbonInterface $date) 
+    {   
+        $workTimes = $this->workTimes[$date->dayOfWeekIso-1];
+        return new Workday($workTimes['start'], $workTimes['end'], $date);
     }
 }
