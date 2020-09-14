@@ -12,4 +12,9 @@ class CustomerController extends Controller
         $customers = Customer::paginate(15);
         return view('customers', ['customers' => $customers]);
     }
+
+    public function tickets(Customer $customer)
+    {
+        return view('tickets', ['tickets' => $customer->tickets()->paginate(15)]);
+    }
 }
