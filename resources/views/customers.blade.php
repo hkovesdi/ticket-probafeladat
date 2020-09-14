@@ -1,5 +1,22 @@
 @extends('app')
 
 @section('content')
-customers page
+<div class="container" style="margin-top: 2rem;">
+    <div class="row">
+        <div>{{$customers->links('vendor.pagination.default')}}</div>
+    @foreach($customers as $customer)
+        <div class="col s12 m6 l4 xl3">
+          <div class="card small">
+            <div class="card-content black-text">
+              <span class="card-title">{{$customer->name}}</span>
+              <p><b>Email:</b> {{$customer->email}}</p>
+            </div>
+            <div class="card-action">
+                <a href="#" class="teal-text">Beküldött hibajegyek</a>
+            </div>
+          </div>
+        </div>
+    @endforeach
+    </div>
+</div>
 @endsection

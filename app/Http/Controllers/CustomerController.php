@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
     public function index() 
-    {
-        return view('customers');
+    {   
+        $customers = Customer::paginate(15);
+        return view('customers', ['customers' => $customers]);
     }
 }
