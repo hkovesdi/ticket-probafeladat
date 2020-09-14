@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top: 2rem;">
     <div class="row">
-        {{$tickets->links('vendor.pagination.default')}}
+        <div>{{$tickets->links('vendor.pagination.default')}}</div>
     @foreach($tickets as $ticket)
         <div class="col s12 m6 l4 xl3">
           <div class="card medium">
@@ -12,7 +12,7 @@
               <p>{{$ticket->content}}</p>
               <br/>
               <p style=""> <b>Beküldve:</b> {{$ticket->created_at}}</p>
-              <p style=""> <b>Beküldő:</b> {{$ticket->customer->name}}</p>
+              <p style=""> <b>Beküldő:</b> <a href="{{route('customers.tickets', ['customer' => $ticket->customer])}}">{{$ticket->customer->name}}</a></p>
             </div>
             <div class="card-action">
                 Esedékes:
