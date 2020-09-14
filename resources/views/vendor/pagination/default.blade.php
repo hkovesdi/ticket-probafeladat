@@ -3,13 +3,13 @@
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="disabled hide" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span aria-hidden="true"><i class="material-icons">keyboard-arrow-left</i></span>
+                <li class="disabled grey-text" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                    <span aria-hidden="true"><i class="material-icons">chevron_left</i></span>
                 </li>
             @else
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')" style="padding: 0px;">
-                        <i class="material-icons">keyboard_arrow_left</i>
+                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')" class="waves-effect" style="padding: 0px;">
+                        <i class="material-icons">chevron_left</i>
                     </a>
                 </li>
             @endif
@@ -25,9 +25,9 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li style="font-weight: 800" aria-current="page"><a>{{ $page }}</a></li>
+                            <li class="active teal lighten-1" aria-current="page"><a>{{ $page }}</a></li>
                         @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            <li><a class="waves-effect" href="{{ $url }}">{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif
@@ -36,11 +36,13 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li>
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"><i class="material-icons">keyboard_arrow_right</i></a>
+                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')" class="waves-effect">
+                        <i class="material-icons">chevron_right</i>
+                    </a>
                 </li>
             @else
-                <li class="disabled hide" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true"><i class="material-icons">keyboard_arrow_right</i></span>
+                <li class="disabled grey-text" aria-disabled="true" aria-label="@lang('pagination.next')">
+                    <span aria-hidden="true"><i class="material-icons">chevron_right</i></span>
                 </li>
             @endif
         </ul>
