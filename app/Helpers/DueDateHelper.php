@@ -47,10 +47,11 @@ class DueDateHelper
         $currentWorkday = $this->createWorkday($currentTime);
         $workTimeRemaining = $currentWorkday->getRemainingWorkTimeInSeconds();
 
-        while($remainingSeconds <= $workTimeRemaining) {
+        while($remainingSeconds > $workTimeRemaining) {
             $remainingSeconds -= $workTimeRemaining;
             $currentTime = $this->getNextWorkDay($currentTime);
             $currentWorkday = $this->createWorkday($currentTime);
+            $workTimeRemaining = $currentWorkday->getRemainingWorkTimeInSeconds();
         }
 
         return $currentTime->addSeconds($remainingSeconds);
