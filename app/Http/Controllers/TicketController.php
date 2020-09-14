@@ -6,10 +6,41 @@ use Illuminate\Http\Request;
 use \App\Models\Ticket;
 
 class TicketController extends Controller
-{
-    public function index()
-    {   
-        $tickets = Ticket::with('customer')->paginate(20);
+{   
+
+    /**
+     * Process the query string
+     * @param array $options The possible values the $queryString can have
+     * @param mixed $default The default value to be returned
+     * @return mixed $queryString if it's in the $options array, $default otherwise
+     */
+    private function processQueryString(array $options, $default, $queryString) 
+    {
+        return in_array($queryString, $options) ? $queryString : $default;
+    }
+
+    public function index(Request $request)
+    {      
+        $sortBy = $this->processQueryString(
+            array('created_at', 'due_date'), 
+            'created_at', 
+            $request->query('sort-by', null)
+        );
+        $orderBy = $this->processQueryString(
+            array('asc', 'desc'), 
+            'asc', 
+            $request->query('order-by', null)
+        );
+        $perPage = $this->processQueryString(
+            array(5, 10, 15), 
+            15, 
+            $request->query('per-page', null)
+        );
+
+        $tickets = Ticket::with('customer')
+            ->orderBy($sortBy, $orderBy)
+            ->paginate($perPage);
+        
         return view('tickets', ['tickets' => $tickets]);
     }
 
