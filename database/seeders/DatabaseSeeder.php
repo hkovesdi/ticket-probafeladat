@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use \App\Models\Customer;
 use \App\Models\Ticket;
+use \App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,11 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        //Password is: password
+        User::factory()->create([
+            'username' => 'admin',
+        ]);
         Customer::factory()->hasTickets(3)->create();
     }
 }
