@@ -3,7 +3,10 @@
 @section('content')
 <div class="container" style="margin-top: 2rem;">
     <div class="row">
-        <div>{{$tickets->links('vendor.pagination.default')}}</div>
+        <div style="text-align: center;">
+            <a class="waves-effect waves-light btn modal-trigger" href="#sort-modal"><i class="material-icons left">view_headline</i>Rendezési beállítások</a>
+            {{$tickets->links('vendor.pagination.default')}}
+        </div>
     @foreach($tickets as $ticket)
         <div class="col s12 m6 l4 xl3">
           <div class="card medium">
@@ -25,4 +28,45 @@
     @endforeach
     </div>
 </div>
+
+<div id="sort-modal" class="modal">
+    <div class="modal-content">
+      <h4 style="padding-bottom: 1rem !important;">Rendezési beállítások</h4>
+      <form id="sort-form">
+        <div class="input-field" style="padding-bottom: 1rem !important;">
+            <select>
+              <option value="1">Beküldési dátum szerint</option>
+              <option value="2">Esedékességi dátum szerint</option>
+            </select>
+            <label>Rendezés</label>
+          </div>
+          <div class="input-field" style="padding-bottom: 1rem !important;">
+            <select>
+              <option value="1">Növekvő (régiek előre)</option>
+              <option value="2">Csökkenő (újak előre)</option>
+            </select>
+            <label>Rendezés módja</label>
+          </div>
+          <div class="input-field">
+            <select>
+                <option value="2">15</option>
+                <option value="2">10</option>
+                <option value="1">5</option>
+            </select>
+            <label>Maximum találatok egy oldalon</label>
+          </div>
+    </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" form="sort-form" class="btn modal-close waves-effect waves-light">Rendezés</button>
+    </div>
+</div>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+    var modalElems = document.querySelectorAll('.modal');
+    var modalInstances = M.Modal.init(modalElems);
+  });
+</script>
 @endsection
