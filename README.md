@@ -21,6 +21,8 @@ _Megjegyzés: Ez eltarthat 5-10 percig_
 9. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
 10. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
 _Fontos: Ha ezen parancs futása során hibát kapunk akkor elképzelhető, hogy manuálisan kell létrehoznunk az adatbázist. Bővebben erről lent._
+11. Töltsük fel az adatbázist előre generált adatokkal `php artisan db:seed`
+12. Generáljuk le a publikus asseteket az `npm run dev paranccsal`
 
 ## Telepítés (Docker nélkül)
 0. Győződjünk meg róla, hogy minden laravelhez szükséges [előkövetelmény](https://laravel.com/docs/8.x/installation#server-requirements 'Laravel előkövetelmények') teljesül.
@@ -31,8 +33,10 @@ _Fontos: Ha ezen parancs futása során hibát kapunk akkor elképzelhető, hogy
 5. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
 6. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
 _Fontos: Ha ezen parancs futása során hibát kapunk, nézzük meg, hogy nem e írtunk el valamit a `.env` fájl DB-vel kezdődő változóiban_
-7. Futtassuk le a következő parancsot a beépített dev server elindításához: `php artisan serve`
-8. Az applikáció a `http://localhost:8000` címen fog futni.
+7. Töltsük fel az adatbázist előre generált adatokkal `php artisan db:seed`
+8. Generáljuk le a publikus asseteket az `npm run dev paranccsal`
+9. Futtassuk le a következő parancsot a beépített dev server elindításához: `php artisan serve`
+10. Az applikáció a `http://localhost:8000` címen fog futni.
 
 ## Telepítési parancsok listája
 
@@ -46,6 +50,8 @@ composer install
 npm install
 php artisan key:generate
 php artisan migrate
+php artisan db:seed
+npm run dev
 ```
 
 ### Docker nélkül
@@ -54,6 +60,8 @@ cp .env.example .env
 composer install
 npm install
 php artisan migrate
+php artisan db:seed
+npm run dev
 php artisan key:generate
 php artisan serve
 ```
