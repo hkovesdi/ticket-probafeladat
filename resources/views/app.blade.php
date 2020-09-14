@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="{{asset('css/app.css')}}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="css/vendor/materialize/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{asset('css/vendor/materialize/materialize.css')}}"  media="screen,projection"/>
 
         <style>
             body {
@@ -23,6 +23,6 @@
     <body>
         <x-navbar/>
         @yield('content')
-        <script type="text/javascript" src="js/vendor/materialize/materialize.min.js"></script>
+        <script type="text/javascript" src="{{asset('js/vendor/materialize/materialize.min.js')}}"></script>
     </body>
 </html>
