@@ -18,8 +18,22 @@ class TicketController extends Controller
         return view('create-ticket');
     }
 
-    public function store(Request $request) 
+    public function store(\App\Http\Requests\StoreTicket $request) 
     {
+        $data = $request->only(['name', 'email', 'title', 'content']);
+        $customer = \App\Models\Customer::where('name', $data['name'])->where('email', $data['email'])->first();
+        if($customer === null) {
+            $customer = \App\Models\Customer::create([
+                'name' => $data['name'],
+                'email' => $data['email']
+            ]);
+        }
 
+        $customer->tickets()->create([
+            'title' => $data['title'],
+            'content' => $data['content']
+        ]);
+
+        return redirect()->back()->with('success', 'Hibajegy sikeresen létrehozva!');
     }
 }
