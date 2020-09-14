@@ -12,7 +12,7 @@
               <p><b>Email:</b> {{$customer->email}}</p>
             </div>
             <div class="card-action">
-                <a href="#" class="teal-text">Beküldött hibajegyek</a>
+            <a href="{{route('customers.tickets', ['customer' => $customer])}}" class="teal-text">Beküldött hibajegyek</a>
             </div>
           </div>
         </div>
