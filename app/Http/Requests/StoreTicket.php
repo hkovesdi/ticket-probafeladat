@@ -25,7 +25,7 @@ class StoreTicket extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|max:255|unique:customers|email',
+            'email' => 'required|max:255|email',
             'title' => 'required|max:255',
             'content' => 'required|max:2000'
         ];
