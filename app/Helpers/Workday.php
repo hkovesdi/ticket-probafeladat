@@ -64,13 +64,11 @@ class Workday
      */
     public function getRemainingWorkTimeInSeconds() 
     {
-        if($this->isAfterWorkTime()){
+        if ($this->isAfterWorkTime()){
             return 0;
-        }
-        else if($this->isBeforeWorkTime()) {
+        } elseif ($this->isBeforeWorkTime()) {
             return $this->workdayEnd->diffInSeconds($this->workdayStart);
-        }
-        else {
+        } else {
             return $this->workdayEnd->diffInSeconds($this->currentTime);
         }
     }

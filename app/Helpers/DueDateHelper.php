@@ -26,7 +26,7 @@ class DueDateHelper
     {
         $parsedWorkTimes = array();
         foreach($workTimes as $workTime) {
-            if($workTime === null) {
+            if ($workTime === null) {
                 array_push($parsedWorkTimes, null);
             } else {
                 $workTime = explode('-', $workTime);
@@ -47,7 +47,7 @@ class DueDateHelper
         $currentWorkday = $this->createWorkday($currentTime);
         $workTimeRemaining = $currentWorkday->getRemainingWorkTimeInSeconds();
 
-        while($remainingSeconds > $workTimeRemaining) {
+        while ($remainingSeconds > $workTimeRemaining) {
             $remainingSeconds -= $workTimeRemaining;
             $currentTime = $this->getNextWorkDay($currentTime);
             $currentWorkday = $this->createWorkday($currentTime);
@@ -66,7 +66,7 @@ class DueDateHelper
     {   
         $nextDay = $date->copy()->addDay();
         
-        while(!$this->isWorkday($nextDay)) {
+        while (!$this->isWorkday($nextDay)) {
             $nextDay->addDay();
         }
 

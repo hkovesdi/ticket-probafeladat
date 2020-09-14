@@ -22,7 +22,7 @@ class TicketController extends Controller
     {
         $data = $request->only(['name', 'email', 'title', 'content']);
         $customer = \App\Models\Customer::where('name', $data['name'])->where('email', $data['email'])->first();
-        if($customer === null) {
+        if ($customer === null) {
             $customer = \App\Models\Customer::create([
                 'name' => $data['name'],
                 'email' => $data['email']
