@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\Ticket;
+use Illuminate\Support\Facades\Lang;
 
 class TicketController extends Controller
 {   
@@ -42,6 +43,6 @@ class TicketController extends Controller
             'content' => $data['content']
         ]);
 
-        return redirect()->back()->with('success', 'Hibajegy sikeresen létrehozva!');
+        return redirect()->back()->withSuccess(Lang::get('messages.storeTicketSuccess'));
     }
 }
