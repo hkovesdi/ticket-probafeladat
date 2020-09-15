@@ -12,7 +12,7 @@ class TicketController extends Controller
     public function index(\App\Http\Requests\SortTickets $request)
     {      
         $sortBy = $request->query('sort-by', 'created_at');
-        $orderBy = $request->query('order-by', 'asc');
+        $orderBy = $request->query('order-by', 'desc');
         $perPage = $request->query('per-page', 15);
 
         $tickets = Ticket::with('customer')

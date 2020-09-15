@@ -50,8 +50,8 @@
           </div>
           <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="order-by">
-              <option value="asc" {{request()->query('order-by') == 'asc' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.orderBy.asc')</option>
               <option value="desc" {{request()->query('order-by') == 'desc' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.orderBy.desc')</option>
+              <option value="asc" {{request()->query('order-by') == 'asc' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.orderBy.asc')</option>
             </select>
             <label>@lang('messages.tickets.sortOptions.orderBy.name')</label>
           </div>
