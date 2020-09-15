@@ -35,9 +35,9 @@
       <form id="sort-form">
         <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="per-page">
-                <option value="15" {{request()->query('per-page') == 15 ? 'selected' : ''}}>15</option>
-                <option value="10" {{request()->query('per-page') == 10 ? 'selected' : ''}}>10</option>
-                <option value="5" {{request()->query('per-page') == 5 ? 'selected' : ''}}>5</option>
+                <option value="6" {{request()->query('per-page') == 6 ? 'selected' : ''}}>6</option>
+                <option value="12" {{request()->query('per-page') == 12 ? 'selected' : ''}}>12</option>
+                <option value="18" {{request()->query('per-page') == 18 ? 'selected' : ''}}>18</option>
             </select>
             <label>@lang('messages.tickets.sortOptions.perPage.name')</label>
           </div>
