@@ -34,6 +34,14 @@
       <h4 style="padding-bottom: 1rem !important;">Rendezési beállítások</h4>
       <form id="sort-form">
         <div class="input-field" style="padding-bottom: 1rem !important;">
+            <select name="per-page">
+                <option value="15">15</option>
+                <option value="10">10</option>
+                <option value="5">5</option>
+            </select>
+            <label>Maximum találatok egy oldalon</label>
+          </div>
+        <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="sort-by">
               <option value="created_at">Beküldési dátum szerint</option>
               <option value="due_date">Esedékességi dátum szerint</option>
@@ -46,14 +54,6 @@
               <option value="desc">Csökkenő (újak előre)</option>
             </select>
             <label>Rendezés módja</label>
-          </div>
-          <div class="input-field">
-            <select name="per-page">
-                <option value="15">15</option>
-                <option value="10">10</option>
-                <option value="5">5</option>
-            </select>
-            <label>Maximum találatok egy oldalon</label>
           </div>
     </form>
     </div>
