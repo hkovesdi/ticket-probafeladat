@@ -25,7 +25,7 @@ class TicketFactory extends Factory
     {
         return [
             "title" => $this->faker->bs,
-            "content" =>  $this->faker->paragraph(random_int(1,5)),
+            "content" =>  $this->faker->realText(200),
             "customer_id" => Customer::factory()
         ];
     }
