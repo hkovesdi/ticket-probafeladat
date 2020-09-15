@@ -35,23 +35,23 @@
       <form id="sort-form">
         <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="per-page">
-                <option value="15">15</option>
-                <option value="10">10</option>
-                <option value="5">5</option>
+                <option value="15" {{request()->query('per-page') == 15 ? 'selected' : ''}}>15</option>
+                <option value="10" {{request()->query('per-page') == 10 ? 'selected' : ''}}>10</option>
+                <option value="5" {{request()->query('per-page') == 5 ? 'selected' : ''}}>5</option>
             </select>
             <label>Maximum találatok egy oldalon</label>
           </div>
         <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="sort-by">
-              <option value="created_at">Beküldési dátum szerint</option>
-              <option value="due_date">Esedékességi dátum szerint</option>
+              <option value="created_at" {{request()->query('sort-by') == 'created_at' ? 'selected' : ''}}>Beküldési dátum szerint</option>
+              <option value="due_date" {{request()->query('sort-by') == 'due_date' ? 'selected' : ''}}>Esedékességi dátum szerint</option>
             </select>
             <label>Rendezés</label>
           </div>
           <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="order-by">
-              <option value="asc">Növekvő (régiek előre)</option>
-              <option value="desc">Csökkenő (újak előre)</option>
+              <option value="asc" {{request()->query('order-by') == 'asc' ? 'selected' : ''}}>Növekvő (régiek előre)</option>
+              <option value="desc" {{request()->query('order-by') == 'desc' ? 'selected' : ''}}>Csökkenő (újak előre)</option>
             </select>
             <label>Rendezés módja</label>
           </div>
