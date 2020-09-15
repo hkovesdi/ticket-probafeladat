@@ -25,6 +25,14 @@ _Fontos: Hiba esetén: php artisan migrate error segítség lent._
 _Info: A generált admin felhasználó neve: `admin` jelszava: `password`._
 12. Generáljuk le a publikus asseteket az `npm run dev paranccsal`
 
+### php artisan migrate error segítség
+* Mindenekelőtt győződjünk meg arról, hogy fut a mysql konténer a `docker ps paranccsal`.
+* Ha már használtunk laradockot mysql adatbázissal, akkor az új adatbázist nem fogja létrehozni, és a root felhasználó adatai sem fognak megváltozni.
+    * Készítsünk egy biztonsági mentést a laradock data/mysql mappájáról. Elérési út a `DATA_PATH_HOST` env változó értéke, alapvetően: `~/.laradock/data`.
+    * Állítsuk le a docker konténereket a `docker-compose down` paranccsal.
+    * Töröljük ki a mysql mappát.
+    * Buildeljük újra a mysql konténert a `docker-compose build --no-cache mysql` paranccsal.
+
 ## Telepítési parancsok listája
 
 ```
@@ -39,11 +47,3 @@ php artisan migrate
 php artisan db:seed
 npm run dev
 ```
-
-### php artisan migrate error segítség
-* Mindenekelőtt győződjünk meg arról, hogy fut a mysql konténer a `docker ps paranccsal`.
-* Ha már használtunk laradockot mysql adatbázissal, akkor az új adatbázist nem fogja létrehozni, és a root felhasználó adatai sem fognak megváltozni.
-    * Készítsünk egy biztonsági mentést a laradock data/mysql mappájáról. Elérési út a `DATA_PATH_HOST` env változó értéke, alapvetően: `~/.laradock/data`.
-    * Állítsuk le a docker konténereket a `docker-compose down` paranccsal.
-    * Töröljük ki a mysql mappát.
-    * Buildeljük újra a mysql konténert a `docker-compose build --no-cache mysql` paranccsal.
