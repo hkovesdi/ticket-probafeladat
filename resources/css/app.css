@@ -21,6 +21,15 @@ body {
     font-size: 1.5rem !important;
 }
 
+.error{
+    background-color: #c62828 !important;
+    color: #fff !important;
+}
+.success{
+    background-color: #43a047 !important;;
+    color: #fff !important;
+}
+
 @media screen and (min-width: 992px) {
     .fixed-action-btn {
         display: none !important;
