@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Lang;
 class TicketController extends Controller
 {   
 
+    /**
+     * Show the tickets page
+     * @param \App\Http\Requests\SortTickets $request
+     * @return View
+     */
     public function index(\App\Http\Requests\SortTickets $request)
     {      
         $sortBy = $request->query('sort-by', 'created_at');
@@ -22,11 +27,21 @@ class TicketController extends Controller
         return view('tickets', ['tickets' => $tickets]);
     }
 
+    /**
+     * Show the ticket creation page
+     * @return View
+     */
     public function create() 
     {
         return view('create-ticket');
     }
 
+    /**
+     * Store a new ticket, and attach it to the customer if exists
+     * or create new if not
+     * @param \App\Http\Requests\StoreTicket $request
+     * @return RedirectResponse
+     */
     public function store(\App\Http\Requests\StoreTicket $request) 
     {
         $data = $request->only(['name', 'email', 'title', 'content']);
