@@ -1,13 +1,13 @@
  <nav class="teal lighten-2">
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Ticket rendszer</a>
+        <a href="#" class="brand-logo">@lang('messages.menu.title')</a>
         @if(request()->route()->getName() == 'tickets.index')
         <a class="brand-logo center modal-trigger hide-on-med-and-down"
             href="#sort-modal" 
             style="font-size: 1.2rem !important; margin: 0px !important;"
         >
             <i class="material-icons left" style="margin-right: 10px;">sort</i>
-            <span>Rendezési beállítások</span>
+            <span>@lang('messages.menu.sortOptions')</span>
         </a>
         <div class="fixed-action-btn">
             <a class=" modal-trigger btn-floating btn-large teal" href="#sort-modal" >
@@ -18,13 +18,13 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 1rem">
             @auth
                 <li class="{{request()->route()->getName() == 'tickets.index' ? 'active' : ''}}">
-                    <a href="{{route('tickets.index')}}">Hibajegyek</a>
+                    <a href="{{route('tickets.index')}}">@lang('messages.menu.tickets')</a>
                 </li>
 
                 <li class="{{request()->route()->getName() == 'customers.index' ? 'active' : ''}}">
-                    <a href="{{route('customers.index')}}">Ügyfelek</a></li>
+                    <a href="{{route('customers.index')}}">@lang('messages.menu.customers')</a></li>
                 <li>
-                    <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">Kijelentkezés</a>
+                    <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">@lang('messages.menu.logout')</a>
                     <form id="logout-form" method="POST" action="{{route('logout')}}">
                         @csrf
                     </form>
@@ -32,10 +32,10 @@
             @endauth
             @guest
                 <li class="{{request()->route()->getName() == 'tickets.create' ? 'active' : ''}}">
-                    <a href="{{route('tickets.create')}}">Új hibajegy</a>
+                    <a href="{{route('tickets.create')}}">@lang('messages.menu.newTicket')</a>
                 </li>
                 <li class="{{request()->route()->getName() == 'login' ? 'active' : ''}}">
-                    <a href="{{route('login')}}">Bejelentkezés</a>
+                    <a href="{{route('login')}}">@lang('messages.menu.login')</a>
                 </li>
             @endguest
         </ul>
@@ -44,16 +44,16 @@
 </nav>
 
 <ul id="slide-out" class="sidenav">
-    <li><a class="subheader">Ticket rendszer</a></li>
+    <li><a class="subheader">@lang('messages.menu.title')</a></li>
     @auth
         <li class="{{request()->route()->getName() == 'tickets.index' ? 'active' : ''}}">
-            <a href="{{route('tickets.index')}}">Hibajegyek</a>
+            <a href="{{route('tickets.index')}}">@lang('messages.menu.tickets')</a>
         </li>
 
         <li class="{{request()->route()->getName() == 'customers.index' ? 'active' : ''}}">
-            <a href="{{route('customers.index')}}">Ügyfelek</a></li>
+            <a href="{{route('customers.index')}}">@lang('messages.menu.customers')</a></li>
         <li>
-            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">Kijelentkezés</a>
+            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();">@lang('messages.menu.logout')</a>
             <form id="logout-form" method="POST" action="{{route('logout')}}">
                 @csrf
             </form>
@@ -61,10 +61,10 @@
     @endauth
     @guest
         <li class="{{request()->route()->getName() == 'tickets.create' ? 'active' : ''}}">
-            <a href="{{route('tickets.create')}}">Új hibajegy</a>
+            <a href="{{route('tickets.create')}}">@lang('messages.menu.newTicket')</a>
         </li>
         <li class="{{request()->route()->getName() == 'login' ? 'active' : ''}}">
-            <a href="{{route('login')}}">Bejelentkezés</a>
+            <a href="{{route('login')}}">@lang('messages.menu.login')</a>
         </li>
     @endguest
 </ul>
