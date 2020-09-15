@@ -29,9 +29,9 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended(RouteServiceProvider::HOME)->withSuccess(Lang::get('messages.loginSuccess'));
+            return redirect()->intended(RouteServiceProvider::HOME)->withSuccess(Lang::get('messages.login.success'));
         }
-        return redirect()->back()->withErrors(Lang::get('messages.loginError'));
+        return redirect()->back()->withErrors(Lang::get('messages.login.error'));
     }
 
     public function logout(Request $request) 
@@ -39,6 +39,6 @@ class LoginController extends Controller
         if(Auth::check()) {
             Auth::logout();
         }
-        return redirect('/tickets/create')->withSuccess(Lang::get('messages.logoutSuccess'));
+        return redirect('/tickets/create')->withSuccess(Lang::get('messages.logout.success'));
     }
 }

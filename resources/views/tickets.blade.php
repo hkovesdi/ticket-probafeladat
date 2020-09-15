@@ -13,11 +13,11 @@
               <span class="card-title">{{$ticket->title}}</span>
               <p>{{$ticket->content}}</p>
               <br/>
-              <p style=""> <b>Beküldve:</b> {{$ticket->created_at}}</p>
-              <p style=""> <b>Beküldő:</b> <a href="{{route('customers.tickets', ['customer' => $ticket->customer])}}">{{$ticket->customer->name}} ({{$ticket->customer->email}})</a></p>
+              <p style=""> <b>@lang('messages.tickets.submitted'):</b> {{$ticket->created_at}}</p>
+              <p style=""> <b>@lang('messages.tickets.submitter'):</b> <a href="{{route('customers.tickets', ['customer' => $ticket->customer])}}">{{$ticket->customer->name}} ({{$ticket->customer->email}})</a></p>
             </div>
             <div class="card-action">
-                Esedékes:
+                @lang('messages.tickets.due'):
                 <div class="chip">
                     {{$ticket->due_date}}
                 </div>
@@ -31,7 +31,7 @@
 
 <div id="sort-modal" class="modal">
     <div class="modal-content">
-      <h4 style="padding-bottom: 1rem !important;">Rendezési beállítások</h4>
+      <h4 style="padding-bottom: 1rem !important;">@lang('messages.menu.sortOptions')</h4>
       <form id="sort-form">
         <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="per-page">
@@ -39,26 +39,26 @@
                 <option value="10" {{request()->query('per-page') == 10 ? 'selected' : ''}}>10</option>
                 <option value="5" {{request()->query('per-page') == 5 ? 'selected' : ''}}>5</option>
             </select>
-            <label>Maximum találatok egy oldalon</label>
+            <label>@lang('messages.tickets.sortOptions.perPage.name')</label>
           </div>
         <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="sort-by">
-              <option value="created_at" {{request()->query('sort-by') == 'created_at' ? 'selected' : ''}}>Beküldési dátum szerint</option>
-              <option value="due_date" {{request()->query('sort-by') == 'due_date' ? 'selected' : ''}}>Esedékességi dátum szerint</option>
+              <option value="created_at" {{request()->query('sort-by') == 'created_at' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.sortBy.createdAt')</option>
+              <option value="due_date" {{request()->query('sort-by') == 'due_date' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.sortBy.dueDate')</option>
             </select>
-            <label>Rendezés</label>
+            <label>@lang('messages.tickets.sortOptions.sortBy.name')</label>
           </div>
           <div class="input-field" style="padding-bottom: 1rem !important;">
             <select name="order-by">
-              <option value="asc" {{request()->query('order-by') == 'asc' ? 'selected' : ''}}>Növekvő (régiek előre)</option>
-              <option value="desc" {{request()->query('order-by') == 'desc' ? 'selected' : ''}}>Csökkenő (újak előre)</option>
+              <option value="asc" {{request()->query('order-by') == 'asc' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.orderBy.asc')</option>
+              <option value="desc" {{request()->query('order-by') == 'desc' ? 'selected' : ''}}>@lang('messages.tickets.sortOptions.orderBy.desc')</option>
             </select>
-            <label>Rendezés módja</label>
+            <label>@lang('messages.tickets.sortOptions.orderBy.name')</label>
           </div>
     </form>
     </div>
     <div class="modal-footer" style="margin-bottom: 0.2rem;">
-        <button type="submit" form="sort-form" class="btn modal-close waves-effect waves-light" style="margin-right: 2.9rem;">Rendezés</button>
+        <button type="submit" form="sort-form" class="btn modal-close waves-effect waves-light" style="margin-right: 2.9rem;">@lang('messages.tickets.sortOptions.sort')</button>
     </div>
 </div>
 <script type="text/javascript">

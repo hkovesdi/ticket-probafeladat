@@ -1,9 +1,16 @@
 <?php
 
 return [
-    'loginSuccess' => 'Successfully logged in',
-    'loginError' => 'Wrong username or password',
-    'logoutSuccess' => 'Successfully logged out',
+    'login' => [
+        'username' => 'Username',
+        'password' => 'Password',
+        'submit' => 'Login',
+        'success' => 'Successfully logged in',
+        'error' => 'Wrong username or password'
+    ],
+    'logout' => [
+        'success' => 'Succesfully logged out'
+    ],
     'menu' => [
         'title' => 'Ticket system',
         'login' => 'Login',
@@ -26,6 +33,30 @@ return [
                 ]
             ],
             'success' => 'Ticket successfully submitted'
-        ]
+        ],
+        'sortOptions' => [
+            'sortBy' => [
+                'name' => 'Sort by',
+                'dueDate' => 'Due date',
+                'createdAt' => 'Submit date'
+            ],
+            'orderBy' => [
+                'name' => 'Order by',
+                'asc' => 'Ascending (old first)',
+                'desc' => 'Descending (new first)'
+            ],
+            'perPage' => [
+                'name' => 'Maximum number of items per page',
+            ],
+            'sort' => 'Sort'
+        ],
+        'submitter' => 'Submitter',
+        'due' => 'Due',
+        'submitted' => 'Submitted at'
+    ],
+    'customers' => [
+        'email' => 'Email',
+        'name' => 'Name',
+        'tickets' => 'Submitted tickets'
     ]
 ];

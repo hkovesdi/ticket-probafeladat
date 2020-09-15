@@ -1,9 +1,16 @@
 <?php
 
 return [
-    'loginSuccess' => 'Sikeresen bejelentkezve',
-    'loginError' => 'Rossz felhasználónév vagy jelszó',
-    'logoutSuccess' => 'Sikeresen kijelentkezve',
+    'login' => [
+        'username' => 'Felhasználónév',
+        'password' => 'Jelszó',
+        'submit' => 'Bejelentkezés',
+        'success' => 'Sikeresen bejelentkezve',
+        'error' => 'Rossz felhasználónév vagy jelszó'
+    ],
+    'logout' => [
+        'success' => 'Sikeresen kijelentkezve'
+    ],
     'menu' => [
         'title' => 'Ticket rendszer',
         'login' => 'Bejelentkezés',
@@ -26,6 +33,30 @@ return [
                 ]
             ],
             'success' => 'Hibajegy sikeresen beküldve'
-        ]
-    ]
+        ],
+        'sortOptions' => [
+            'sortBy' => [
+                'name' => 'Rendezés',
+                'dueDate' => 'Esedékességi dátum alapján',
+                'createdAt' => 'Beküldési dátum alapján'
+            ],
+            'orderBy' => [
+                'name' => 'Rendezés módja',
+                'asc' => 'Növekvő (régiek előre)',
+                'desc' => 'Csökkenő (újak előre)'
+            ],
+            'perPage' => [
+                'name' => 'Maximum találatok egy oldalon',
+            ],
+            'sort' => 'Rendezés'
+        ],
+        'submitter' => 'Beküldő',
+        'due' => 'Esedékes',
+        'submitted' => 'Beküldve'
+    ],
+    'customers' => [
+        'email' => 'Email',
+        'name' => 'Név',
+        'tickets' => 'Beküldött hibajegyek'
+    ],
 ];
