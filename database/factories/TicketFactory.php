@@ -29,4 +29,15 @@ class TicketFactory extends Factory
             "customer_id" => Customer::factory()
         ];
     }
+
+    /**
+     * Randomize the created_at attribute of the ticket
+     * @return \Illuminate\Database\Eloquent\Factories\Factor
+     */
+    public function randomCreationDate()
+    {
+        return $this->state([
+            'created_at' => \Carbon\Carbon::now()->subSeconds(random_int(0, 5184000))
+        ]);
+    }
 }
