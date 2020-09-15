@@ -1,7 +1,7 @@
  <nav class="teal lighten-2">
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">@lang('messages.menu.title')</a>
-        @if(request()->route()->getName() == 'tickets.index')
+        @if(request()->route()->getName() == 'tickets.index' || request()->route()->getName() == 'customers.tickets')
         <a class="brand-logo center modal-trigger hide-on-med-and-down"
             href="#sort-modal" 
             style="font-size: 1.2rem !important; margin: 0px !important;"
