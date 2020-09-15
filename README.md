@@ -1,4 +1,4 @@
-## Telepítés (Docker-ral)
+## Telepítés
 0. Ne felejtsük el lepullolni a laradock submodulet. (`git submodule update`)
 1. Menjünk a laradock mappába és készítsük el a laradock `.env` fájlját a `cp env-example .env` commanddal.
 2. Igény szerint állítsuk át a `MySQL` alá tartozó változókat az előbb készített `.env` fájlban.
@@ -20,7 +20,7 @@ _Megjegyzés: Ez eltarthat 5-10 percig_
 8. Telepítsük fel az npm csomagokat az `npm install` paranccsal.
 9. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
 10. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
-_Fontos: Ha a parancs futása során hibát kapunk akkor elképzelhető, hogy manuálisan kell létrehoznunk az adatbázist. Bővebben erről lent._
+_Fontos: Hiba esetén: php artisan migrate error segítség lent._
 11. Töltsük fel az adatbázist előre generált adatokkal `php artisan db:seed`
 _Figyelem: A generált admin felhasználó neve: `admin` jelszava: `password`._
 12. Generáljuk le a publikus asseteket az `npm run dev paranccsal`
