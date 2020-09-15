@@ -5,7 +5,7 @@
             href="#sort-modal" 
             style="font-size: 1.2rem !important; margin: 0px !important;"
         >
-            <i class="material-icons left">view_headline</i>
+            <i class="material-icons left" style="margin-right: 10px;">sort</i>
             <span>Rendezési beállítások</span>
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 1rem">
