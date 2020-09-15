@@ -18,7 +18,7 @@ class TicketController extends Controller
     {      
         $sortBy = $request->query('sort-by', 'created_at');
         $orderBy = $request->query('order-by', 'desc');
-        $perPage = $request->query('per-page', 15);
+        $perPage = $request->query('per-page', 6);
 
         $tickets = Ticket::with('customer')
             ->orderBy($sortBy, $orderBy)
