@@ -9,17 +9,21 @@ use Illuminate\Support\Carbon;
 class DueDateHelper 
 {
     private $submitDate;
-    private $dueDate;
     private $workTimes;
-    private $exceptions;
     private $maxResponseTime;
 
-    function __construct(string $maxResponseTime, array $workTimes, CarbonInterface $submitDate = NULL, array $exceptions = array()) 
+    /**
+     * Constructs a new DueDateHelper class
+     * @param string $maxResponseTime The maximum response time in HH:MM:SS format
+     * @param array $workTimes The work times of a given week in HH:MM:SS-HH:MM:SS format or null
+     * if a given day is not a workday, where the first element represents Monday and the seventh element represents Sunday
+     * @param CarbonInterface $submitDate The date from where the due date will be calculated
+     */
+    function __construct(string $maxResponseTime, array $workTimes, CarbonInterface $submitDate = NULL) 
     {
         $this->submitDate = $submitDate ?? Carbon::now()->milliseconds(0);
         $this->maxResponseTime = $maxResponseTime;
         $this->workTimes = $this->parseWorkTimes($workTimes);
-        $this->exceptions = $exceptions;
     }
 
     /**
@@ -37,6 +41,11 @@ class DueDateHelper
         return new DateInterval("PT{$hours}H{$minutes}M{$seconds}S");
     }
 
+    /**
+     * Parses the work times of the week into DateIntervals
+     * @param array $workTimes
+     * @return array
+     */
     private function parseWorkTimes(array $workTimes) 
     {
         $parsedWorkTimes = array();
@@ -53,6 +62,10 @@ class DueDateHelper
         return $parsedWorkTimes;
     }
 
+    /**
+     * Calculates the due date based on the workdays and max response hours
+     * @return CarbonInterface
+     */
     public function calculateDueDate() 
     {   
         $remainingSeconds = strtotime($this->maxResponseTime) - strtotime('TODAY');
