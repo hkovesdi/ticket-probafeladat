@@ -26,7 +26,7 @@ class SortTickets extends FormRequest
         return [
             'sort-by' => 'sometimes|in:created_at,due_date',
             'order-by' => 'sometimes|in:asc,desc',
-            'per-page' => 'sometimes|in:5,10,15'
+            'per-page' => 'sometimes|in:6,12,18'
         ];
     }
 }
