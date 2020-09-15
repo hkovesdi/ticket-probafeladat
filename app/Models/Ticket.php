@@ -23,15 +23,19 @@ class Ticket extends Model
         parent::boot();
     
         static::saving(function($model){
-            $model->due_date = (new DueDateHelper('16:00:00', array(
-                '09:00:00-17:00:00',
-                '09:00:00-17:00:00',
-                '09:00:00-17:00:00',
-                '09:00:00-17:00:00',
-                '09:00:00-17:00:00',
-                null,
-                null
-            )))->calculateDueDate();
+            $model->due_date = (new DueDateHelper(
+                '16:00:00', 
+                array(
+                    '09:00:00-17:00:00',
+                    '09:00:00-17:00:00',
+                    '09:00:00-17:00:00',
+                    '09:00:00-17:00:00',
+                    '09:00:00-17:00:00',
+                    null,
+                    null
+                ),
+                \Carbon\Carbon::parse($model->created_at)
+            ))->calculateDueDate();
         }); 
     }
 
