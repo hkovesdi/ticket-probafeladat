@@ -35,5 +35,13 @@
                 </script>
             @endforeach
         @endif
+        @if(session()->has('success'))
+            <script type="text/javascript">
+                M.toast({
+                    html: "<div class='valign-wrapper'><i class='material-icons' style='margin-right: 0.5rem;'>check</i><span>{{session()->get('success')}}</span></div>", 
+                    classes: 'success',
+                })
+            </script>
+        @endif
     </body>
 </html>
