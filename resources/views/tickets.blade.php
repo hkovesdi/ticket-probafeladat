@@ -4,11 +4,10 @@
 <div class="container" style="margin-top: 2rem;">
     <div class="row">
         <div style="text-align: center;">
-            <a class="waves-effect waves-light btn modal-trigger" href="#sort-modal"><i class="material-icons left">view_headline</i>Rendezési beállítások</a>
             {{$tickets->withQueryString()->links('vendor.pagination.default')}}
         </div>
     @foreach($tickets as $ticket)
-        <div class="col s12 m6 l4 xl3">
+        <div class="col s12 m12 l6 xl4">
           <div class="card medium">
             <div class="card-content black-text">
               <span class="card-title">{{$ticket->title}}</span>
@@ -27,6 +26,7 @@
         </div>
     @endforeach
     </div>
+    <div class="center-align" style="margin-bottom: 2rem;">{{$tickets->links('vendor.pagination.default')}}</div>
 </div>
 
 <div id="sort-modal" class="modal">
