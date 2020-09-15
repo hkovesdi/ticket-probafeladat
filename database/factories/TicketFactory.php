@@ -24,20 +24,10 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            "title" => $this->faker->bs,
-            "content" =>  $this->faker->realText(200),
-            "customer_id" => Customer::factory()
+            'title' => $this->faker->bs,
+            'content' =>  $this->faker->realText(200),
+            'customer_id' => Customer::factory(),
+            'created_at' => \Carbon\Carbon::now()->subSeconds($this->faker->numberBetween(0, 5184000))
         ];
-    }
-
-    /**
-     * Randomize the created_at attribute of the ticket
-     * @return \Illuminate\Database\Eloquent\Factories\Factor
-     */
-    public function randomCreationDate()
-    {
-        return $this->state([
-            'created_at' => \Carbon\Carbon::now()->subSeconds(random_int(0, 5184000))
-        ]);
     }
 }
