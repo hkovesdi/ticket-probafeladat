@@ -34,7 +34,7 @@ class Ticket extends Model
                     null,
                     null
                 ),
-                \Carbon\Carbon::parse($model->created_at)
+                \Carbon\Carbon::parse($model->created_at)->milliseconds(0)
             ))->calculateDueDate();
         }); 
     }

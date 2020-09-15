@@ -16,7 +16,7 @@ class DueDateHelper
 
     function __construct(string $maxResponseTime, array $workTimes, CarbonInterface $submitDate = NULL, array $exceptions = array()) 
     {
-        $this->submitDate = $submitDate ?? Carbon::now();
+        $this->submitDate = $submitDate ?? Carbon::now()->milliseconds(0);
         $this->maxResponseTime = $maxResponseTime;
         $this->workTimes = $this->parseWorkTimes($workTimes);
         $this->exceptions = $exceptions;
@@ -41,7 +41,7 @@ class DueDateHelper
     }
 
     public function calculateDueDate() 
-    {
+    {   
         $remainingSeconds = strtotime($this->maxResponseTime) - strtotime('TODAY');
         $currentTime = $this->isWorkday($this->submitDate) ? $this->submitDate : $this->getNextWorkDay($this->submitDate);
         $currentWorkday = $this->createWorkday($currentTime);
