@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top: 2rem;">
     <div class="row">
-        <div>{{$customers->links('vendor.pagination.default')}}</div>
+        <div class="center-align">{{$customers->links('vendor.pagination.default')}}</div>
     @foreach($customers as $customer)
         <div class="col s12 m6 l4 xl3">
           <div class="card small">
@@ -18,5 +18,6 @@
         </div>
     @endforeach
     </div>
+    <div class="center-align" style="margin-bottom: 2rem;">{{$customers->links('vendor.pagination.default')}}</div>
 </div>
 @endsection
