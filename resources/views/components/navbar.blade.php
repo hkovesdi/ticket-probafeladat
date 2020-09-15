@@ -1,13 +1,20 @@
  <nav class="teal lighten-2">
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">Ticket rendszer</a>
-        <a class="brand-logo center modal-trigger hide-on-med-and-down {{request()->route()->getName() != 'tickets.index' ? 'hide' : ''}}"
+        @if(request()->route()->getName() == 'tickets.index')
+        <a class="brand-logo center modal-trigger hide-on-med-and-down"
             href="#sort-modal" 
             style="font-size: 1.2rem !important; margin: 0px !important;"
         >
             <i class="material-icons left" style="margin-right: 10px;">sort</i>
             <span>Rendezési beállítások</span>
         </a>
+        <div class="fixed-action-btn">
+            <a class=" modal-trigger btn-floating btn-large teal" href="#sort-modal" >
+              <i class="large material-icons">sort</i>
+            </a>
+          </div>
+        @endif
         <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 1rem">
             @auth
                 <li class="{{request()->route()->getName() == 'tickets.index' ? 'active' : ''}}">
