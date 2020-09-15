@@ -24,5 +24,16 @@
         <x-navbar/>
         @yield('content')
         <script type="text/javascript" src="{{asset('js/vendor/materialize/materialize.min.js')}}"></script>
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <script type="text/javascript">
+                    M.toast({
+                        html: "<div class='valign-wrapper'><i class='material-icons' style='margin-right: 0.5rem;'>error_outline</i><span>{{$error}}</span></div>", 
+                        classes: 'error',
+                        displayLength: {{count($errors->all())}}*2500
+                    })
+                </script>
+            @endforeach
+        @endif
     </body>
 </html>
