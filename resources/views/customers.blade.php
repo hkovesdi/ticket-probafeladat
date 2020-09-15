@@ -5,7 +5,7 @@
     <div class="row">
         <div class="center-align">{{$customers->links('vendor.pagination.default')}}</div>
         @foreach($customers as $customer)
-            <div class="col s12 m6 l4 xl3">
+            <div class="col s12 m6 l4 xl4">
             <div class="card small">
                 <div class="card-content black-text">
                 <span class="card-title">{{$customer->name}}</span>
