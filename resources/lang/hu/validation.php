@@ -146,6 +146,9 @@ return [
     */
 
     'attributes' => [
+        'username' => 'felhasználónév',
+        'title' => 'tárgy',
+        'content' => 'tartalom',
         'name'     => 'név',
         'password' => 'jelszó',
     ],
