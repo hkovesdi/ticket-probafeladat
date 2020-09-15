@@ -22,6 +22,21 @@ class DueDateHelper
         $this->exceptions = $exceptions;
     }
 
+    /**
+     * Convert the time from string to DateInterval
+     * @param string $time The time in HH:MM:SS format
+     * @return DateInterval
+     */
+    private function timeToDateInterval(string $time) 
+    {
+        $timeSplit = explode(':', $time);
+        $hours = $timeSplit[0];
+        $minutes = $timeSplit[1];
+        $seconds = $timeSplit[2];
+
+        return new DateInterval("PT{$hours}H{$minutes}M{$seconds}S");
+    }
+
     private function parseWorkTimes(array $workTimes) 
     {
         $parsedWorkTimes = array();
@@ -30,10 +45,8 @@ class DueDateHelper
                 array_push($parsedWorkTimes, null);
             } else {
                 $workTime = explode('-', $workTime);
-                $workTimeStartSplit = explode(':', $workTime[0]);
-                $workTimeStart = new DateInterval("PT{$workTimeStartSplit[0]}H{$workTimeStartSplit[1]}M{$workTimeStartSplit[2]}S");
-                $workTimeEndSplit = explode(':', $workTime[1]);
-                $workTimeEnd = new DateInterval("PT{$workTimeEndSplit[0]}H{$workTimeEndSplit[1]}M{$workTimeEndSplit[2]}S");
+                $workTimeStart = $this->timeToDateInterval($workTime[0]);
+                $workTimeEnd = $this->timeToDateInterval($workTime[1]);
                 array_push($parsedWorkTimes, array("start" => $workTimeStart, "end" => $workTimeEnd));
             }
         }
