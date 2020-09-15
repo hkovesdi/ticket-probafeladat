@@ -21,8 +21,8 @@ _Megjegyzés: Ez eltarthat 5-10 percig_
 9. Generáljuk le az application key-t a `php artisan key:generate` paranccsal.
 10. Futtassuk le az adatbázis migrációkat a `php artisan migrate` paranccsal.  
 _Fontos: Hiba esetén: php artisan migrate error segítség lent._
-11. Töltsük fel az adatbázist előre generált adatokkal `php artisan db:seed`
-_Figyelem: A generált admin felhasználó neve: `admin` jelszava: `password`._
+11. Töltsük fel az adatbázist előre generált adatokkal `php artisan db:seed`  
+_Info: A generált admin felhasználó neve: `admin` jelszava: `password`._
 12. Generáljuk le a publikus asseteket az `npm run dev paranccsal`
 
 ## Telepítési parancsok listája
