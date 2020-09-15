@@ -43,6 +43,6 @@ class TicketController extends Controller
             'content' => $data['content']
         ]);
 
-        return redirect()->back()->withSuccess(Lang::get('messages.storeTicketSuccess'));
+        return redirect()->back()->withSuccess(Lang::get('messages.tickets.create.success'));
     }
 }
