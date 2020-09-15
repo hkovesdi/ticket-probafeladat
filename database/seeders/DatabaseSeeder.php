@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'username' => 'admin',
         ]);
-        Customer::factory()->hasTickets(3)->create();
+        Customer::factory()->count(50)->hasTickets(3)->create();
     }
 }
