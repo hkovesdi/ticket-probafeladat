@@ -14,7 +14,7 @@
               <p>{{$ticket->content}}</p>
               <br/>
               <p style=""> <b>Beküldve:</b> {{$ticket->created_at}}</p>
-              <p style=""> <b>Beküldő:</b> <a href="{{route('customers.tickets', ['customer' => $ticket->customer])}}">{{$ticket->customer->name}}</a></p>
+              <p style=""> <b>Beküldő:</b> <a href="{{route('customers.tickets', ['customer' => $ticket->customer])}}">{{$ticket->customer->name}} ({{$ticket->customer->email}})</a></p>
             </div>
             <div class="card-action">
                 Esedékes:
