@@ -11,6 +11,7 @@ class LoginController extends Controller
 {   
     /**
      * Show the login page
+     * @return Response
      */
     public function index() 
     {
@@ -34,6 +35,11 @@ class LoginController extends Controller
         return redirect()->back()->withErrors(Lang::get('messages.login.error'));
     }
 
+    /**
+     * Log the user out
+     * @param Request $request
+     * @return Response
+     */
     public function logout(Request $request) 
     {
         if(Auth::check()) {
