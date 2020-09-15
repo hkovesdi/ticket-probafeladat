@@ -1,5 +1,5 @@
 ## Telepítés
-0. Ne felejtsük el lepullolni a laradock submodulet. (`git submodule update`)
+0. Ne felejtsük el lepullolni a laradock submodulet. (`git submodule init` aztán `git submodule update`)
 1. Menjünk a laradock mappába és készítsük el a laradock `.env` fájlját a `cp env-example .env` commanddal.
 2. Igény szerint állítsuk át a `MySQL` alá tartozó változókat az előbb készített `.env` fájlban.
 3. Navigáljunk a projekt főmappájába majd készítsük el a laravel `.env` fájlját a `cp .env.example .env` paranccsal.
